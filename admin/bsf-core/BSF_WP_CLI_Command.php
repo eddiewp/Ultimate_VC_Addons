@@ -24,9 +24,9 @@ class BSF_WP_CLI_Command extends WP_CLI_Command {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *  1. wp brainstormforce activate uabb <purchase-key>
+	 *  1. wp brainstormforce license activate uabb <purchase-key>
 	 *      - This will activate the license for plugin Ultimate Addons for beaver builder with purchase key <purchase-key>
-	 *  2. wp brainstormforce deactivate uabb <purchase-key>
+	 *  2. wp brainstormforce license deactivate uabb <purchase-key>
 	 *      - This will deactivate the license for plugin Ultimate Addons for beaver builder with purchase key <purchase-key>
 	 *
 	 */
@@ -49,6 +49,9 @@ class BSF_WP_CLI_Command extends WP_CLI_Command {
 		} else {
 			WP_CLI::error( 'Please enter the purchase key.' );
 		}
+
+		// Setup brainstorm_products data.
+		init_bsf_core();
 
 		$_POST = array(
 			'bsf_license_manager' => array(
@@ -77,6 +80,7 @@ class BSF_WP_CLI_Command extends WP_CLI_Command {
 
 			WP_CLI::error( $error_message );
 		}
+
 	}
 }
 
